@@ -1,16 +1,21 @@
 <template>
   <el-form :inline="true">
     <el-form-item label="姓名">
-      <el-input placeholder="请输入姓名" v-model="search.name"/>
+      <el-input v-model="search.name" placeholder="请输入姓名"/>
     </el-form-item>
     <el-form-item label="用户名">
-      <el-input placeholder="请输入用户名" v-model="search.username"/>
+      <el-input v-model="search.username" placeholder="请输入用户名"/>
     </el-form-item>
     <el-form-item label="手机号">
-      <el-input placeholder="请输入手机号" v-model="search.phone"/>
+      <el-input v-model="search.phone" placeholder="请输入手机号"/>
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" @click="getUserList"><el-icon><Search /></el-icon>查询</el-button>
+      <el-button type="primary" @click="getUserList">
+        <el-icon>
+          <Search/>
+        </el-icon>
+        查询
+      </el-button>
       <el-button type="primary" @click="handleAdd">
         <el-icon>
           <Plus/>
@@ -20,10 +25,10 @@
     </el-form-item>
   </el-form>
   <el-table :data="userData" style="width: 100%">
-    <el-table-column prop="username" label="用户名" width="180"/>
-    <el-table-column prop="name" label="姓名" width="180"/>
-    <el-table-column prop="age" label="年龄"/>
-    <el-table-column prop="phone" label="电话"/>
+    <el-table-column label="用户名" prop="username" width="180"/>
+    <el-table-column label="姓名" prop="name" width="180"/>
+    <el-table-column label="年龄" prop="age"/>
+    <el-table-column label="电话" prop="phone"/>
     <el-table-column>
       <template #default="scope">
         <el-button type="danger" @click="handelDelete(scope.row.id)">
@@ -42,11 +47,11 @@
     </el-table-column>
   </el-table>
   <el-pagination
-      background
-      layout="prev, pager, next"
-      :page-size="pageSize"
       :current-page="pageNum"
       :page-count="pageCount"
+      :page-size="pageSize"
+      background
+      layout="prev, pager, next"
       @current-change="handelCurrentPageChange"/>
 
 
@@ -94,7 +99,7 @@ export default {
         title: '',
         user: {}
       },
-      search:{}
+      search: {}
 
     };
   },
@@ -112,11 +117,11 @@ export default {
     //提交保存
     onSubmit() {
       axios.post('/user/save', this.userForm.user).then((res) => {
-        ElMessage({type: 'success',message: '保存操作执行成功！',});
+        ElMessage({type: 'success', message: '保存操作执行成功！',});
         this.userForm.show = false;
         this.getUserList();
       }).catch((err) => {
-        ElMessage({type: 'danger',message: '服务器异常，操作失败！',});
+        ElMessage({type: 'danger', message: '服务器异常，操作失败！',});
       });
     },
     // 弹出框取消按钮事件
@@ -129,7 +134,7 @@ export default {
       this.userForm.show = true;
     },
     //编辑按钮事件
-    handleEdit(user){
+    handleEdit(user) {
       this.userForm.title = `编辑【${user.name}】用户信息`;
       this.userForm.user = user;
       this.userForm.show = true;

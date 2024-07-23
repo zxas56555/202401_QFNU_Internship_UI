@@ -1,6 +1,4 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
 import UserList from './pages/user/UserList.vue'
 </script>
 
@@ -20,13 +18,15 @@ import UserList from './pages/user/UserList.vue'
 </template>
 
 <style scoped>
-.el-header{
+.el-header {
   background-color: #c6e2ff;
 }
-.el-aside{
+
+.el-aside {
   background-color: #d9ecff;
 }
-.el-main{
+
+.el-main {
   background-color: #ecf5ff;
 }
 </style>
